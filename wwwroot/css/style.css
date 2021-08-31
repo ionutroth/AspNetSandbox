@@ -1,0 +1,289 @@
+#optiuni{
+    text-align: center;
+    padding:15px 15px;
+    width:90px;
+    height: 90px;
+    font-size: 15px;
+    cursor: pointer
+};
+
+#optiuni:hover{
+    background-color: #bfbfbf
+};
+#imagine{
+    width:40px;
+    height:40px
+};
+
+#searchButtons{
+    background-color: #f8f9fa;
+    padding-left: 16px;
+    padding-right: 16px;
+    
+}
+
+#searchButtons:hover{
+    box-shadow: 1px 1px 3px #bfbfbf
+};
+
+#dropDownbtn{
+    border-radius: 50px;
+    background-color: white;
+    appearance: none;
+}
+
+#dropDownbtn:hover{
+    border-radius: 50px;
+    background-color: lightgray;
+    
+}
+
+input[type="text"], textarea{
+    outline: none;
+    box-shadow:none !important;
+    border:1px solid #ccc !important;
+    
+}
+
+.form-control{
+    border-right-style: none;
+    border-left-style: none;
+    min-width: 350px;
+    max-width:500px;
+    line-height: 130;
+}
+
+#footerRomania{
+    margin-bottom: 0px; padding:15px 30px; font-size: 14px;
+}
+
+#accountLink{
+    color:black;font-size: 12px;text-decoration: none;
+}
+
+#accountLink:hover{
+    background-color: #f2f2f2;
+}
+
+#info{
+    width:300px px;height:24px;
+    margin-left: 0px;
+     text-align:center;
+     margin:10px 33px
+}
+
+#manageAccount{
+    background-color: white;
+    border-radius: 50px;
+    border-style:solid;
+     border-width:1px;border-color: 
+     lightgray;
+     padding:8px 16px;
+     margin-top:16px;
+     font-size:14px
+}
+
+#manageAccount:hover{
+    background-color: #f2f2f2;
+}
+
+#anotherAccount{
+    width:400px;margin-left: 0px; cursor:pointer; border-bottom-style:solid;border-top-style: solid; border-width: 1px;border-color: lightgrey;
+    font-size:14px ;
+}
+
+#signoutAccount{
+    width:354px;height:70px; margin-left: 0px;border-bottom-style: solid;border-bottom-width: 1px;border-color: lightgrey; padding:0px 14px;
+    text-align: center;
+}
+
+#signoutButton{
+    margin: auto;
+    background-color: white;
+    border-color: lightgrey;
+    cursor: pointer;
+    padding:8px 24px;
+    font-size: 14px;
+    font-family: sans-serif;
+}
+
+#avatar{
+    width:80px;
+    height:80px;
+    background-color: darkgreen; 
+    color: white; 
+    border-radius: 50px;
+    text-align: center; 
+    margin:auto;
+    position:relative
+}
+
+#avatarButton{
+    position:absolute;
+    background-color: #f2f2f2;
+    top:55px;
+    left:55px;
+    font-size:15px;
+    border-radius: 50px;
+    padding:7px 7px
+}
+
+#avatarButton:hover{
+    color: blue;
+}
+
+#avatarBtnCircle{
+    border-radius: 50px;
+    background-color:white;
+    width:35px;
+    height:35px;
+    position:absolute;
+    top:53px;
+    left: 53px;
+}
+
+#menuDrop{
+    width:320px;
+    height:300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    margin-top: 0;
+    padding-top: 0px;
+}
+
+#logo{
+    text-align:center;
+    position: absolute;
+    bottom: 0px;
+}
+
+#logoContainer{
+    min-height: 100px;
+    max-height: 300px;
+    height: calc(100% - 560px);
+    position:relative
+}
+
+#languages{
+    margin-left: 0px;
+    margin-right: 0px;
+    width:100%;
+    display:inline-block; 
+    max-height:240px; 
+    height:100%;
+    min-height: 50px; 
+    text-align: center;
+}
+
+body{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    min-width:400px;
+    width:100%;
+    margin-left: 0px;
+}
+
+#footer-right{
+    padding:15px;
+    float:right;
+    font-size: 14px;
+    text-decoration: none;
+    
+}
+
+#footer-left{
+    padding:15px;
+    float:left;
+    font-size: 14px;
+    text-decoration: none;
+    
+}
+
+#footer-right > a,
+#footer-left > a{
+    color: gray;
+}
+
+#magnifingGlass{
+    background-color: white;
+    padding:0px 13px 0px 13px;
+    border-radius: 20px 0px 0px 20px;
+    height:38px;
+    cursor:pointer;
+}
+
+#microphone{
+    background-color: white;
+    padding:0px 13px 0px 13px;
+    border-radius: 0px 20px 20px 0px;
+    cursor:pointer;
+    height:38px;
+}
+
+#inputform{
+    max-width:500px;
+    min-width:200px;
+    width: 100%;
+    border-right:0px;
+}
+
+#footerLeft{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#footerRight{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#footer{
+    padding:0px 20px;
+    margin:0px 0px
+}
+
+@media only screen and (max-width: 770px) {
+
+    #footerRight{
+        display: flex;
+        height:50px;
+        vertical-align: middle;
+        height:100%;
+        justify-content: center;
+        align-items: center;
+    }
+    #footerLeft{
+        
+        vertical-align: middle;
+        display: flex;
+        width:100%;
+        justify-content: center;
+        align-items: center;
+    }
+    #footer-left, #footer-right{
+    padding:15px;
+    text-align: center;
+    font-size: 14px;
+    text-decoration: none;
+    }
+  }
+@media only screen and(max-width:480px){
+    #footer{
+        padding:0px 40px
+    }
+    #footerLeft{
+        height:100px;
+        vertical-align: middle;
+        display: flex;
+        width:100%;
+        justify-content: center;
+        align-items: center;
+    }
+    #footer-right{
+        margin:auto
+    }
+    #footer-left{
+        margin:auto;
+        width:33%
+    }
+}
