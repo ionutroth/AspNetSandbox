@@ -18,6 +18,8 @@ namespace ApiSandbox.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
+        private const float KELVIN_CONST = 273.15f;
+
 
         public WeatherForecastController()
         {
@@ -34,22 +36,28 @@ namespace ApiSandbox.Controllers
             Console.WriteLine(response.Content);
             return ConvertResponseToWeatherForecast(response.Content);
 
-            
+            var context = ConvertResponseToWeatherForecast(response.Content);
+            Console.WriteLine(context);
         }
-        public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content)
+        public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content, int days = 5)
         {
             var json = JObject.Parse(content);
             
-            return Enumerable.Range(1, 5).Select(index => {
+            return Enumerable.Range(1, days).Select(index => {
                 var jsonDailyForecast = json["daily"][index];
                 var unixDateTime = jsonDailyForecast.Value<long>("dt");
+                var weatherSummary = jsonDailyForecast["weather"][0].Value<string>("main");
 
                 return new WeatherForecast {
                     Date = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).Date,
-                    TemperatureC = (int) Math.Round(jsonDailyForecast["temp"].Value<float>("day") - 273.15f),
-                    Summary = jsonDailyForecast["weather"][0].Value<string>("main")
+                    TemperatureC = ExtractCelsiusTemperatureFromDailyWeather(jsonDailyForecast),
+                    Summary = weatherSummary
                 };
             }).ToArray();
+        }
+        private static int ExtractCelsiusTemperatureFromDailyWeather(JToken jsonDailyForecast)
+        {
+            return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVIN_CONST);
         }
 
         //http://api.openweathermap.org/data/2.5/forecast/daily?lat=44.4268&lon=26.1025&cnt=1&appid=7ad9707743286cc164f725a3cd3d3c6e
