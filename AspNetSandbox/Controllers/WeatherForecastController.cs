@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace ApiSandbox.Controllers
@@ -37,14 +38,18 @@ namespace ApiSandbox.Controllers
         }
         public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content)
         {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
+            var json = JObject.Parse(content);
+            
+            return Enumerable.Range(1, 5).Select(index => {
+                var jsonDailyForecast = json["daily"][index];
+                var unixDateTime = jsonDailyForecast.Value<long>("dt");
+
+                return new WeatherForecast {
+                    Date = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).Date,
+                    TemperatureC = (int) Math.Round(jsonDailyForecast["temp"].Value<float>("day") - 273.15f),
+                    Summary = jsonDailyForecast["weather"][0].Value<string>("main")
+                };
+            }).ToArray();
         }
 
         //http://api.openweathermap.org/data/2.5/forecast/daily?lat=44.4268&lon=26.1025&cnt=1&appid=7ad9707743286cc164f725a3cd3d3c6e
