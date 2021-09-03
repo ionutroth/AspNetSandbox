@@ -23,8 +23,8 @@ namespace AspNetSandbox.Tests
 
             // Assert
             var cityWeatherForecast = (CityForcast)output;
-            Assert.Equal(52.52, cityWeatherForecast.Long);
-            Assert.Equal(13.4, cityWeatherForecast.Lat);
+            Assert.Equal(53, Math.Round(cityWeatherForecast.Lat));
+            Assert.Equal(13, Math.Round(cityWeatherForecast.Long));
             Assert.Equal("Berlin", cityWeatherForecast.City);
         }
     }
