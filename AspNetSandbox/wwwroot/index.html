@@ -166,7 +166,17 @@
                     <a href="" style="color:#1a0dab">Maghiar</a>
                     <a href="" style="color:#1a0dab">Deutsch</a>
                 </p>
-                <textarea id="weatherForecast" rows="5" cols="40"></textarea>
+                <textarea id="weatherForecast" rows="3" cols="40"></textarea>
+                <br />
+                <form id="form">
+                    <input type="number" name="latitude" placeholder="Latitude" id="latitude" min="-90" max="90" required/>
+                    <input type="number" name="longitute" placeholder="Longitude" id="longitude" min="-180" max="180" required/>
+                    <br />
+                    <button type="submit" id="get-coords" value="submit">Try it out</button>
+                </form>
+                
+                <p id="city">City:</p>
+                <p id="weather">Weather:</p>
             </div>
 
             <div style="width:102%; background-color: #f2f2f2; ;color: rgba(0,0,0,.54);">
@@ -198,16 +208,31 @@
         </div>
         <script src="./lib/jquery/dist/jquery.min.js"></script>
         <script>
-            var settings = {
+            var settingsDaily = {
                 "url": "/weatherForecast",
                 "method": "GET",
                 "timeout": 0,
             };
 
-            $.ajax(settings).done(function (response) {
+            $.ajax(settingsDaily).done(function (response) {
                 console.log(response);
                 $("#weatherForecast").val("the weather for tomorow should look like this: " + response[0].summary);
             });
+
+            $("#form").submit(function (e) {
+                var settingsCity = {
+                    "url": "https://api.openweathermap.org/data/2.5/weather?lat=" + $("#latitude").val() + "&lon=" + $("#longitude").val() + "&appid=7ad9707743286cc164f725a3cd3d3c6e",
+                    "method": "GET",
+                    "timeout": 0,
+                };
+                $.ajax(settingsCity).done(function (response) {
+                    console.log(response);
+                    $("#city").text("City: " + response.name);
+                    $("#weather").text("Weather: " + response.weather[0].description)
+                });
+                return false;
+            });
+
         </script>
     </body>
 </html>
