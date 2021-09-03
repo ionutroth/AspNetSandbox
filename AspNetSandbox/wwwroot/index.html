@@ -220,8 +220,10 @@
             });
 
             $("#form").submit(function (e) {
+                var lon = $("#longitude").val();
+                var lat = $("#latitude").val();
                 var settingsCity = {
-                    "url": "https://api.openweathermap.org/data/2.5/weather?lat=" + $("#latitude").val() + "&lon=" + $("#longitude").val() + "&appid=7ad9707743286cc164f725a3cd3d3c6e",
+                    "url": "https://api.openweathermap.org/data/2.5/weather?lat=`${lat}`&lon=`${lon}`&appid=7ad9707743286cc164f725a3cd3d3c6e",
                     "method": "GET",
                     "timeout": 0,
                 };

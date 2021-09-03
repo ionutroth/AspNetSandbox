@@ -11,5 +11,7 @@ namespace ApiSandbox
 
         public float Lat { get; set; }
 
+        public string City { get; set; }
+
     }
 }
