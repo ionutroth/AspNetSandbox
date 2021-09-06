@@ -15,13 +15,13 @@ namespace AspNetSandbox.Controllers
         public BookController()
         {
             books = new Book[2];
-            books[0] = new Book() {
+            books[0] = new Book {
                 Id = 1,
                 Title = "ceva",
                 Author = "ceva autor",
                 Language = "ceva limba"
             };
-            books[1] = new Book() {
+            books[1] = new Book {
                 Id = 2,
                 Title = "ceva2",
                 Author = "ceva autor2",
@@ -37,12 +37,7 @@ namespace AspNetSandbox.Controllers
         [HttpGet("{id}")]  
         public Book Get(int id)
         {
-            return books.Single(SomeFunction);
-        }
-        
-        private bool SomeFunction(Book book)
-        {
-            return book.Id == 1;
+            return books.Single(book=>book.Id == id);
         }
 
         [HttpPost]
@@ -52,6 +47,16 @@ namespace AspNetSandbox.Controllers
         }
 
         [HttpPut]
-        public Book Put()
+        public void Put(int id, [FromBody] string value)
+        {
+
+        }
+
+        [HttpDelete]
+        public void Delete(int id)
+        {
+
+        }
+
     }
 }
