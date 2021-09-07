@@ -16,30 +16,36 @@ namespace AspNetSandbox.Controllers
         {
             this.bookService = bookService;
         }
+
+        //GET method
         [HttpGet]
         public IEnumerable<Book> Get()
         {
             return bookService.Get();
         }
         
+        //GET method with id
         [HttpGet("{id}")]  
         public Book Get(int id)
         {
             return bookService.Get(id);
         }
 
+        //Post method 
         [HttpPost]
         public void Post([FromBody]Book value)
         {
             bookService.Post(value);
         }
 
+        //Put method
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody]Book value)
         {
-
+            bookService.Put(id, value);
         }
 
+        //DELETE method
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

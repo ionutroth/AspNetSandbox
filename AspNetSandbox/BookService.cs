@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AspNetSandbox
 {
-    public class BookService : IBookService, IBookService
+    public class BookService : IBookService
     {
 
         private static List<Book> books;
@@ -37,14 +37,23 @@ namespace AspNetSandbox
 
         public void Post(Book value)
         {
-            var id = books.Count + 1;
-            value.Id = id;
+            var sortedBooks = books.OrderBy(book => book.Id).ToList();
+            value.Id = sortedBooks[sortedBooks.Count - 1].Id + 1;
             books.Add(value);
         }
 
-        public void Put(int id, string value)
+        public void Put(int id, Book value)
         {
-
+            var selectedBook = books.Find(book => book.Id == id);
+            if (books.Exists(book => book.Id == id)) {
+                selectedBook.Title = value.Title;
+                selectedBook.Author = value.Author;
+                selectedBook.Language = value.Language;
+            }
+            else{
+                value.Id = id;
+                books.Add(value);
+            }
         }
         public void Delete(int id)
         {
