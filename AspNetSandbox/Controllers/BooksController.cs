@@ -9,10 +9,10 @@ namespace AspNetSandbox.Controllers
     [Route("api/[controller]")]
     [ApiController]
     
-    public class BookController: ControllerBase
+    public class BooksController: ControllerBase
     {
-        private List<Book> books;
-        public BookController()
+        private static List<Book> books;
+        static BooksController()
         {
             books = new List<Book>();
             books.Add(new Book {
@@ -41,23 +41,23 @@ namespace AspNetSandbox.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Book value)
+        public void Post([FromBody]Book value)
         {
-            int id = books.Count + 1;
+            var id = books.Count + 1;
             value.Id = id;
             books.Add(value);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
 
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
-
+            books.Remove(Get(id));
         }
     }
 }
