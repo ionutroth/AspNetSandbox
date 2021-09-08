@@ -9,34 +9,66 @@ namespace AspNetSandbox.Tests
 {
     public class BookServiceTest
     {
+        private BookService bookService;
+
         [Fact]
         public void BookServiceTesting()
         {
             //assume
-            var bookService = new BookService();
+            bookService = new BookService();
 
             //act
-            bookService.Post(new Book
+            bookService.PostBook(new Book
             {
                 Title = "Test.Book.Title Nr1",
                 Author = "Test.Book.Author Nr1",
                 Language = "Test.Book.Language Nr1"
             });
-            bookService.Delete(2);
-            bookService.Put(2 ,new Book
+            bookService.DeleteBook(2);
+            bookService.PutBook(2, new Book
             {
                 Title = "Test.Book.Title Nr2",
                 Author = "Test.Book.Author Nr2",
                 Language = "Test.Book.Language Nr2"
             });
-            
+
             //assert
-            Assert.Equal("Test.Book.Title Nr1", bookService.Get(3).Title);
-            Assert.Equal("Test.Book.Author Nr1", bookService.Get(3).Author);
-            Assert.Equal("Test.Book.Language Nr1", bookService.Get(3).Language);
-            Assert.Equal("Test.Book.Title Nr2", bookService.Get(2).Title);
-            Assert.Equal("Test.Book.Author Nr2", bookService.Get(2).Author);
-            Assert.Equal("Test.Book.Language Nr2", bookService.Get(2).Language);
+            Assert.Equal("Test.Book.Title Nr1", bookService.GetBookById(3).Title);
+            Assert.Equal("Test.Book.Author Nr1", bookService.GetBookById(3).Author);
+            Assert.Equal("Test.Book.Language Nr1", bookService.GetBookById(3).Language);
+            Assert.Equal("Test.Book.Title Nr2", bookService.GetBookById(2).Title);
+            Assert.Equal("Test.Book.Author Nr2", bookService.GetBookById(2).Author);
+            Assert.Equal("Test.Book.Language Nr2", bookService.GetBookById(2).Language);
         }
+
+        //[Fact]
+        //public void BookServiceTesting2()
+        //{
+        //    //assume
+        //    bookService = new BookService();
+        //    bookService.ResetId();
+        //    //act
+        //    bookService.PostBook(new Book
+        //    {
+        //        Title = "Test.Book.Title Nr1",
+        //        Author = "Test.Book.Author Nr1",
+        //        Language = "Test.Book.Language Nr1"
+        //    });
+        //    bookService.DeleteBook(2);
+        //    bookService.PutBook(2, new Book
+        //    {
+        //        Title = "Test.Book.Title Nr2",
+        //        Author = "Test.Book.Author Nr2",
+        //        Language = "Test.Book.Language Nr2"
+        //    });
+
+        //    //assert
+        //    Assert.Equal("Test.Book.Title Nr1", bookService.GetBookById(3).Title);
+        //    Assert.Equal("Test.Book.Author Nr1", bookService.GetBookById(3).Author);
+        //    Assert.Equal("Test.Book.Language Nr1", bookService.GetBookById(3).Language);
+        //    Assert.Equal("Test.Book.Title Nr2", bookService.GetBookById(2).Title);
+        //    Assert.Equal("Test.Book.Author Nr2", bookService.GetBookById(2).Author);
+        //    Assert.Equal("Test.Book.Language Nr2", bookService.GetBookById(2).Language);
+        //}
     }
 }

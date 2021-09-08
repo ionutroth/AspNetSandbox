@@ -19,37 +19,42 @@ namespace AspNetSandbox.Controllers
 
         //GET method
         [HttpGet]
-        public IEnumerable<Book> Get()
+        public IEnumerable<Book> GetAllBooks()
         {
-            return bookService.Get();
+            return bookService.GetAllBooks();
         }
         
         //GET method with id
         [HttpGet("{id}")]  
-        public Book Get(int id)
+        public ActionResult GetBookById(int id)
         {
-            return bookService.Get(id);
+            try {
+                return Ok(bookService.GetBookById(id));
+            }catch(Exception e) {
+                return NotFound();
+            }
+            
         }
 
         //Post method 
         [HttpPost]
-        public void Post([FromBody]Book value)
+        public void PostBook([FromBody]Book value)
         {
-            bookService.Post(value);
+            bookService.PostBook(value);
         }
 
         //Put method
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Book value)
+        public void PutBook(int id, [FromBody]Book value)
         {
-            bookService.Put(id, value);
+            bookService.PutBook(id, value);
         }
 
         //DELETE method
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void DeleteBook(int id)
         {
-            bookService.Delete(id);
+            bookService.DeleteBook(id);
         }
     }
 }

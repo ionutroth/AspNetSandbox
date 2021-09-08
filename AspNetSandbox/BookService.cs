@@ -9,6 +9,7 @@ namespace AspNetSandbox
     {
 
         private static List<Book> books;
+        private static int id = 0;
         static BookService()
         {
             books = new List<Book>();
@@ -25,24 +26,24 @@ namespace AspNetSandbox
                 Language = "ceva limba2"
             });
         }
-        public IEnumerable<Book> Get()
+        public IEnumerable<Book> GetAllBooks()
         {
             return books;
         }
 
-        public Book Get(int id)
+        public Book GetBookById(int id)
         {
             return books.Single(book => book.Id == id);
         }
 
-        public void Post(Book value)
+        public void PostBook(Book value)
         {
             var sortedBooks = books.OrderBy(book => book.Id).ToList();
             value.Id = sortedBooks[sortedBooks.Count - 1].Id + 1;
             books.Add(value);
         }
 
-        public void Put(int id, Book value)
+        public void PutBook(int id, Book value)
         {
             var selectedBook = books.Find(book => book.Id == id);
             if (books.Exists(book => book.Id == id)) {
@@ -55,9 +56,14 @@ namespace AspNetSandbox
                 books.Add(value);
             }
         }
-        public void Delete(int id)
+        public void DeleteBook(int id)
         {
-            books.Remove(Get(id));
+            books.Remove(GetBookById(id));
+        }
+
+        public void ResetId()
+        {
+            id = 0;
         }
     }
 }

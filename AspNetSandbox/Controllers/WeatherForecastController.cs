@@ -39,6 +39,7 @@ namespace ApiSandbox.Controllers
             var context = ConvertResponseToWeatherForecast(response.Content);
             Console.WriteLine(context);
         }
+        [NonAction]
         public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content, int days = 5)
         {
             var json = JObject.Parse(content);
