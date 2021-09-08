@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EditorConfigFiles Include=".editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="OpenWeatherApi.json" />
   </ItemGroup>
 

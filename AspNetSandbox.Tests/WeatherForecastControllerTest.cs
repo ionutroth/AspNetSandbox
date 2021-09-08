@@ -40,7 +40,6 @@ namespace AspNetSandbox.Tests
 
             // Assert
 
-            // WeatherForecast weatherForecastAfterTomorrow = ((WeatherForecast[])output)[0];
             var weatherForecastAfterTomorrow = ((WeatherForecast[])output)[1];
             Assert.Equal("Clear", weatherForecastAfterTomorrow.Summary);
             Assert.Equal(20, weatherForecastAfterTomorrow.TemperatureC);
@@ -51,7 +50,7 @@ namespace AspNetSandbox.Tests
         {
             var assembly = GetType().Assembly;
             var assemblyName = assembly.GetName().Name;
-            var resourceName = $"{assemblyName}.OpenWeatherAPI.json";
+            var resourceName = $"{assemblyName}.OpenWeatherApi.json";
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
             using (var tr = new StreamReader(resourceStream))
             {
