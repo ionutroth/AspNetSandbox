@@ -6,6 +6,9 @@ using Xunit;
 
 namespace AspNetSandbox.Tests
 {
+    /// <summary>
+    /// test suite for WeatherControllerForecast.
+    /// </summary>
     public class WeatherForecastControllerTest
     {
         [Fact]
@@ -38,10 +41,10 @@ namespace AspNetSandbox.Tests
 
             // Assert
 
-            //WeatherForecast weatherForecastAfterTomorrow = ((WeatherForecast[])output)[0];
+            // WeatherForecast weatherForecastAfterTomorrow = ((WeatherForecast[])output)[0];
             var weatherForecastAfterTomorrow = ((WeatherForecast[])output)[1];
-            Assert.Equal("Clear", (weatherForecastAfterTomorrow.Summary));
-            Assert.Equal(20, (weatherForecastAfterTomorrow.TemperatureC));
+            Assert.Equal("Clear", weatherForecastAfterTomorrow.Summary);
+            Assert.Equal(20, weatherForecastAfterTomorrow.TemperatureC);
             Assert.Equal(new DateTime(2021, 9, 4), (weatherForecastAfterTomorrow.Date));
 
         }
