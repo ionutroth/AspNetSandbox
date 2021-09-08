@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
@@ -18,10 +16,12 @@ namespace ApiSandbox.Controllers
     {
         private const float KELVINCONST = 273.15f;
 
-        public WeatherForecastController()
-        {
-        }
-
+        /// <summary>
+        /// Getting weather forecast for 5 days.
+        /// </summary>
+        /// <returns>
+        /// Enumerable of weather forecast objects.
+        /// </returns>
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
@@ -33,6 +33,10 @@ namespace ApiSandbox.Controllers
             return ConvertResponseToWeatherForecast(response.Content);
         }
 
+        /// <summary>Converts the response to weather forecast object.</summary>
+        /// <param name="content">The content.</param>
+        /// <param name="days">The days.</param>
+        /// <returns>WeatherForecast object.</returns>
         [NonAction]
         public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content, int days = 5)
         {
@@ -53,6 +57,7 @@ namespace ApiSandbox.Controllers
             }).ToArray();
         }
 
+        [NonAction]
         private static int ExtractCelsiusTemperatureFromDailyWeather(JToken jsonDailyForecast)
         {
             return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVINCONST);

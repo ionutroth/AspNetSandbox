@@ -2,6 +2,9 @@
 
 namespace AspNetSandbox.Tests
 {
+    /// <summary>
+    /// Test suite for BookController.
+    /// </summary>
     public class BookServiceTest
     {
         private BookService bookService;

@@ -5,6 +5,9 @@ using Xunit;
 
 namespace AspNetSandbox.Tests
 {
+    /// <summary>
+    /// Test suite for CityForecastController.
+    /// </summary>
     public class CityForecastControllerTest
     {
         [Fact]

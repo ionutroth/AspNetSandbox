@@ -5,11 +5,19 @@
     <StartupObject></StartupObject>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\Projects\AspNetSandbox\AspNetSandbox\AspNetSandbox.xml</DocumentationFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="DockerSandbox\**" />
+    <Compile Remove="NewFolder\**" />
     <Content Remove="DockerSandbox\**" />
+    <Content Remove="NewFolder\**" />
     <EmbeddedResource Remove="DockerSandbox\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
     <None Remove="DockerSandbox\**" />
+    <None Remove="NewFolder\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,10 +28,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
   </ItemGroup>
 
 </Project>

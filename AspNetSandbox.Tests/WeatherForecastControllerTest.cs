@@ -7,7 +7,7 @@ using Xunit;
 namespace AspNetSandbox.Tests
 {
     /// <summary>
-    /// test suite for WeatherControllerForecast.
+    /// Test suite for WeatherControllerForecast.
     /// </summary>
     public class WeatherForecastControllerTest
     {
@@ -39,7 +39,6 @@ namespace AspNetSandbox.Tests
             var output = controller.ConvertResponseToWeatherForecast(content);
 
             // Assert
-
             var weatherForecastAfterTomorrow = ((WeatherForecast[])output)[1];
             Assert.Equal("Clear", weatherForecastAfterTomorrow.Summary);
             Assert.Equal(20, weatherForecastAfterTomorrow.TemperatureC);

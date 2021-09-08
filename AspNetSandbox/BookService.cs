@@ -3,10 +3,15 @@ using System.Linq;
 
 namespace AspNetSandbox
 {
+    /// <summary>Implement CRUD operations.</summary>
     public class BookService : IBookService
     {
         private static List<Book> books;
 
+        /// <summary>
+        /// Initializes static members of the <see cref="BookService"/> class.
+        /// Initializes the Bookservice class with 2 Book objects.
+        /// </summary>
         static BookService()
         {
             books = new List<Book>();
@@ -26,16 +31,23 @@ namespace AspNetSandbox
             });
         }
 
+        /// <summary>Gets all books.</summary>
+        /// <returns>Book list.</returns>
         public IEnumerable<Book> GetAllBooks()
         {
             return books;
         }
 
+        /// <summary>Gets the book by identifier.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Book object.</returns>
         public Book GetBookById(int id)
         {
             return books.Single(book => book.Id == id);
         }
 
+        /// <summary>Posts the book.</summary>
+        /// <param name="value">The value.</param>
         public void PostBook(Book value)
         {
             var sortedBooks = books.OrderBy(book => book.Id).ToList();
@@ -43,6 +55,9 @@ namespace AspNetSandbox
             books.Add(value);
         }
 
+        /// <summary>Updates or creates a value from book list.</summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="value">The value.</param>
         public void PutBook(int id, Book value)
         {
             var selectedBook = books.Find(book => book.Id == id);
@@ -59,6 +74,8 @@ namespace AspNetSandbox
             }
         }
 
+        /// <summary>Deletes the book object with set id.</summary>
+        /// <param name="id">The identifier.</param>
         public void DeleteBook(int id)
         {
             books.Remove(GetBookById(id));

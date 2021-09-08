@@ -5,19 +5,30 @@ using RestSharp;
 
 namespace ApiSandbox.Controllers
 {
+    /// <summary>
+    /// This controller allows us to see the weather in a certain latitude longitude combination.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class CityForecastController : ControllerBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CityForecastController"/> class.
+        /// </summary>
         public CityForecastController()
         {
         }
 
+        /// <summary>Performs an explicit conversion from <see cref="CityForcast" /> to <see cref="CityForecastController" />.</summary>
+        /// <param name="v">The v.</param>
+        /// <returns>The result of the conversion.</returns>
         public static explicit operator CityForecastController(CityForcast v)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>Gets the weather from inputed longitude and latitude.</summary>
+        /// <returns>cityForecast object.</returns>
         [HttpGet]
         public CityForcast Get()
         {
@@ -29,6 +40,9 @@ namespace ApiSandbox.Controllers
             return ConvertResponseToWeatherForecast(response.Content);
         }
 
+        /// <summary>Converts the response to weather cityForecast object.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>CityForecast object.</returns>
         [NonAction]
         public CityForcast ConvertResponseToWeatherForecast(string content)
         {
