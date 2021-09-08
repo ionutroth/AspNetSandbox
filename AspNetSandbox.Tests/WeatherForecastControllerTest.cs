@@ -1,7 +1,7 @@
-using ApiSandbox;
-using ApiSandbox.Controllers;
 using System;
 using System.IO;
+using ApiSandbox;
+using ApiSandbox.Controllers;
 using Xunit;
 
 namespace AspNetSandbox.Tests
@@ -23,10 +23,9 @@ namespace AspNetSandbox.Tests
 
             // Assert
             var weatherForecastForTomorrow = ((WeatherForecast[])output)[0];
-            Assert.Equal("Clear", (weatherForecastForTomorrow.Summary));
-            Assert.Equal(18, (weatherForecastForTomorrow.TemperatureC));
-            Assert.Equal(new DateTime(2021, 9, 3), (weatherForecastForTomorrow.Date));
-
+            Assert.Equal("Clear", weatherForecastForTomorrow.Summary);
+            Assert.Equal(18, weatherForecastForTomorrow.TemperatureC);
+            Assert.Equal(new DateTime(2021, 9, 3), weatherForecastForTomorrow.Date);
         }
 
         [Fact]
@@ -45,8 +44,7 @@ namespace AspNetSandbox.Tests
             var weatherForecastAfterTomorrow = ((WeatherForecast[])output)[1];
             Assert.Equal("Clear", weatherForecastAfterTomorrow.Summary);
             Assert.Equal(20, weatherForecastAfterTomorrow.TemperatureC);
-            Assert.Equal(new DateTime(2021, 9, 4), (weatherForecastAfterTomorrow.Date));
-
+            Assert.Equal(new DateTime(2021, 9, 4), weatherForecastAfterTomorrow.Date);
         }
 
         private string LoadJsonFromResource()

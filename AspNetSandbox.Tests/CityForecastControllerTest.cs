@@ -1,10 +1,6 @@
-﻿using ApiSandbox.Controllers;
+﻿using System;
 using ApiSandbox;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ApiSandbox.Controllers;
 using Xunit;
 
 namespace AspNetSandbox.Tests

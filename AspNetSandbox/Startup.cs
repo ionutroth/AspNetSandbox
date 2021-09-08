@@ -29,11 +29,11 @@ namespace AspNetSandbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-			services.AddControllers();
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiSandbox", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name }.xml";
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
@@ -46,12 +46,13 @@ namespace AspNetSandbox
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            	app.UseSwagger();
+                app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiSandbox v1"));
             }
             else
             {
                 app.UseExceptionHandler("/Error");
+
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -64,9 +65,6 @@ namespace AspNetSandbox
             app.UseDefaultFiles(defaultFilesOptions);
 
             app.UseStaticFiles();
-
-            
-            
 
             app.UseRouting();
 

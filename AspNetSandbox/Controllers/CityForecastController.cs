@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
@@ -17,6 +13,11 @@ namespace ApiSandbox.Controllers
         {
         }
 
+        public static explicit operator CityForecastController(CityForcast v)
+        {
+            throw new NotImplementedException();
+        }
+
         [HttpGet]
         public CityForcast Get()
         {
@@ -26,9 +27,6 @@ namespace ApiSandbox.Controllers
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
             return ConvertResponseToWeatherForecast(response.Content);
-
-            var context = ConvertResponseToWeatherForecast(response.Content);
-            Console.WriteLine(context);
         }
 
         [NonAction]
@@ -36,18 +34,12 @@ namespace ApiSandbox.Controllers
         {
             var json = JObject.Parse(content);
 
-            return new CityForcast {
-
+            return new CityForcast
+            {
                 Long = json["coord"].Value<float>("lon"),
                 Lat = json["coord"].Value<float>("lat"),
-                City = json.Value<string>("name")
-
+                City = json.Value<string>("name"),
             };
-        }
-
-        public static explicit operator CityForecastController(CityForcast v)
-        {
-            throw new NotImplementedException();
         }
     }
 }

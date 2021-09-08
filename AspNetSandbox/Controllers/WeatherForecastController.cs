@@ -16,9 +16,7 @@ namespace ApiSandbox.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-
-        private const float KELVIN_CONST = 273.15f;
-
+        private const float KELVINCONST = 273.15f;
 
         public WeatherForecastController()
         {
@@ -33,30 +31,31 @@ namespace ApiSandbox.Controllers
             IRestResponse response = client.Execute(request);
             Console.WriteLine(response.Content);
             return ConvertResponseToWeatherForecast(response.Content);
-
-            var context = ConvertResponseToWeatherForecast(response.Content);
-            Console.WriteLine(context);
         }
+
         [NonAction]
         public IEnumerable<WeatherForecast> ConvertResponseToWeatherForecast(string content, int days = 5)
         {
             var json = JObject.Parse(content);
-            
-            return Enumerable.Range(1, days).Select(index => {
+
+            return Enumerable.Range(1, days).Select(index =>
+            {
                 var jsonDailyForecast = json["daily"][index];
                 var unixDateTime = jsonDailyForecast.Value<long>("dt");
                 var weatherSummary = jsonDailyForecast["weather"][0].Value<string>("main");
 
-                return new WeatherForecast {
+                return new WeatherForecast
+                {
                     Date = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).Date,
                     TemperatureC = ExtractCelsiusTemperatureFromDailyWeather(jsonDailyForecast),
-                    Summary = weatherSummary
+                    Summary = weatherSummary,
                 };
             }).ToArray();
         }
+
         private static int ExtractCelsiusTemperatureFromDailyWeather(JToken jsonDailyForecast)
         {
-            return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVIN_CONST);
+            return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVINCONST);
         }
     }
 }

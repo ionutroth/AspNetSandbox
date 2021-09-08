@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ApiSandbox
+﻿namespace ApiSandbox
 {
     public class CityForcast
     {
@@ -12,6 +7,5 @@ namespace ApiSandbox
         public float Lat { get; set; }
 
         public string City { get; set; }
-
     }
 }

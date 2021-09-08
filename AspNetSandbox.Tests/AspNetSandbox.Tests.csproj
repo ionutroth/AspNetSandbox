@@ -7,11 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove=".editorconfig" />
     <None Remove="OpenWeatherAPI.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="OpenWeatherAPI.json" />
+    <EditorConfigFiles Include=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="OpenWeatherApi.json" />
   </ItemGroup>
 
   <ItemGroup>
