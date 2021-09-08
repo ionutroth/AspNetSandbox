@@ -9,27 +9,25 @@ using RestSharp;
 
 namespace ApiSandbox.Controllers
 {
+    /// <summary>
+    /// Controller that allows us to get weather forecast.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
 
         private const float KELVIN_CONST = 273.15f;
 
 
         public WeatherForecastController()
         {
-            
         }
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var client = new RestClient("https://api.openweathermap.org/data/2.5/onecall?lat=11&lon=11&exclude=hourly,minutely&appid=7ad9707743286cc164f725a3cd3d3c6e");
+            var client = new RestClient("https://api.openweathermap.org/data/2.5/onecall?lat=11&lon=11&exclude=hourly,minutely&appid=97368af7fb3676da33fa82cf4053348f");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);
@@ -60,7 +58,5 @@ namespace ApiSandbox.Controllers
         {
             return (int)Math.Round(jsonDailyForecast["temp"].Value<float>("day") - KELVIN_CONST);
         }
-
-        //http://api.openweathermap.org/data/2.5/forecast/daily?lat=44.4268&lon=26.1025&cnt=1&appid=7ad9707743286cc164f725a3cd3d3c6e
     }
 }

@@ -20,7 +20,7 @@ namespace ApiSandbox.Controllers
         [HttpGet]
         public CityForcast Get()
         {
-            var client = new RestClient("https://api.openweathermap.org/data/2.5/weather?lat=52.52&lon=13.4&appid=7ad9707743286cc164f725a3cd3d3c6e");
+            var client = new RestClient("https://api.openweathermap.org/data/2.5/weather?lat=52.52&lon=13.4&appid=97368af7fb3676da33fa82cf4053348f");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
             IRestResponse response = client.Execute(request);

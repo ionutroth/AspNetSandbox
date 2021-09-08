@@ -56,6 +56,7 @@ namespace AspNetSandbox
                 books.Add(value);
             }
         }
+
         public void DeleteBook(int id)
         {
             books.Remove(GetBookById(id));
@@ -67,4 +68,3 @@ namespace AspNetSandbox
         }
     }
 }
-
