@@ -6,6 +6,7 @@ namespace AspNetSandbox.Controllers
 {
     using System;
     using System.Collections.Generic;
+    using AspNetSandbox.Models;
     using Microsoft.AspNetCore.Mvc;
 
     /// <summary>

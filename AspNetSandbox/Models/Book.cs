@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace AspNetSandbox
+namespace AspNetSandbox.Models
 {
     public class Book
     {

@@ -4,6 +4,7 @@
 
 namespace AspNetSandbox.Tests
 {
+    using AspNetSandbox.Models;
     using Xunit;
 
     /// <summary>
