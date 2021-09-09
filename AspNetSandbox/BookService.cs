@@ -1,8 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿// <copyright file="WeatherForecast.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AspNetSandbox
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>Implement CRUD operations.</summary>
     public class BookService : IBookService
     {

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using RestSharp;
+﻿// <copyright file="WeatherForecastController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ApiSandbox.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json.Linq;
+    using RestSharp;
+
     /// <summary>
     /// Controller that allows us to get weather forecast.
     /// </summary>

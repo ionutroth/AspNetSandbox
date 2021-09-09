@@ -1,7 +1,11 @@
-using System;
+// <copyright file="WeatherForecast.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ApiSandbox
 {
+    using System;
+
     public class WeatherForecast
     {
         public DateTime Date { get; set; }

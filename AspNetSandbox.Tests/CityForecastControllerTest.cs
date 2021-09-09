@@ -1,10 +1,14 @@
-﻿using System;
-using ApiSandbox;
-using ApiSandbox.Controllers;
-using Xunit;
+﻿// <copyright file="CityForecastControllerTest.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AspNetSandbox.Tests
 {
+    using System;
+    using ApiSandbox;
+    using ApiSandbox.Controllers;
+    using Xunit;
+
     /// <summary>
     /// Test suite for CityForecastController.
     /// </summary>

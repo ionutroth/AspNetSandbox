@@ -1,9 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc;
+﻿// <copyright file="BooksController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AspNetSandbox.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using Microsoft.AspNetCore.Mvc;
+
     /// <summary>
     ///   This controller allows us to call CRUD operations from BookService.
     /// </summary>

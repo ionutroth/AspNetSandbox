@@ -1,10 +1,14 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json.Linq;
-using RestSharp;
+﻿// <copyright file="CityForecastController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace ApiSandbox.Controllers
 {
+    using System;
+    using Microsoft.AspNetCore.Mvc;
+    using Newtonsoft.Json.Linq;
+    using RestSharp;
+
     /// <summary>
     /// This controller allows us to see the weather in a certain latitude longitude combination.
     /// </summary>

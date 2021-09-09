@@ -1,11 +1,15 @@
-using System;
-using System.IO;
-using ApiSandbox;
-using ApiSandbox.Controllers;
-using Xunit;
+// <copyright file="WeatherForecastControllerTest.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AspNetSandbox.Tests
 {
+    using System;
+    using System.IO;
+    using ApiSandbox;
+    using ApiSandbox.Controllers;
+    using Xunit;
+
     /// <summary>
     /// Test suite for WeatherControllerForecast.
     /// </summary>
