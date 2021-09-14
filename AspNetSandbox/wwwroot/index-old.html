@@ -3,9 +3,181 @@
 <head>
     <meta charset="utf-8" />
     <title>Hello boyz</title>
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-
+    <div id="vue-app">
+        <p>Hello there</p>
+        <table id="book-table">
+            <thead>
+                <tr>
+                    <th>
+                        Id
+                    </th>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th>
+                        Language
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <p>Add new book</p>
+        <form id="add">
+            <label for="title-field-add">
+                Title</label>
+                <input type="text" id="title-field-add" placeholder="Book title" required/>
+                <br />
+                <label for="author-field-add">
+                    Author</label>
+                    <input type="text" id="author-field-add" placeholder="Book author" required/>
+                    <br />
+                    <label for="language-field-add">
+                        Language</label>
+                        <input type="text" id="language-field-add" placeholder="Book language" required/>
+                        <button type="submit">Add book</button>
+        </form>
+        <br />
+        <p>Add new book</p>
+        <form id="edit">
+            <label for="id-field-edit">
+                Id</label>
+                <input type="number" id="id-field-edit" placeholder="Book id" required />
+                <br />
+                <label for="title-field-edit">
+                    Title</label>
+                    <input type="text" id="title-field-edit" placeholder="Book title" required />
+                    <br />
+                    <label for="author-field-edit">
+                        Author</label>
+                        <input type="text" id="author-field-edit" placeholder="Book author" required />
+                        <br />
+                        <label for="language-field-edit">
+                            Language</label>
+                            <input type="text" id="language-field-edit" placeholder="Book language" required />
+                            <button type="submit">Edit book</button>
+</form>
+    </div>
 </body>
-    <p>Hello there</p>
+
+<script>
+    function showBooks()
+    {
+        var settings = {
+            "url": "https://localhost:5001/api/books/",
+            "method": "GET",
+            "timeout": 0,
+        };
+
+        $.ajax(settings).done(function (response) {
+            console.log(response);
+            var tableBody = document.getElementById("book-table").getElementsByTagName("tbody")[0];
+            response.forEach(book => {
+                var row = tableBody.insertRow();
+
+                var cellID = row.insertCell();
+                var textID = document.createTextNode(book.id);
+                cellID.appendChild(textID);
+                var cellTitle = row.insertCell();
+                var textTitle = document.createTextNode(book.title);
+                cellTitle.appendChild(textTitle);
+                var cellAuthor = row.insertCell();
+                var textAuthor = document.createTextNode(book.author);
+                cellAuthor.appendChild(textAuthor);
+                var cellLanguage = row.insertCell();
+                var textLanguage = document.createTextNode(book.language);
+                cellLanguage.appendChild(textLanguage);
+                var cellActions = row.insertCell();
+                var buttonDelete = document.createElement("BUTTON");
+                buttonDelete.setAttribute("id", "button-delete-" + String(book.id));
+                buttonDelete.addEventListener("click", function () {
+                    var urlString = "https://localhost:5001/api/books/" + book.id;
+                    console.log(urlString);
+                    var settings = {
+                        "url": urlString,
+                        "method": "DELETE",
+                        "timeout": 0,
+                    };
+
+                    $.ajax(settings).done(function () {
+                        $("tbody").empty();
+                        showBooks();
+                    });
+                });
+                buttonDelete.innerHTML = "Delete " + book.id;
+                cellActions.appendChild(buttonDelete);
+            })
+        });
+    }
+    showBooks();
+
+
+    var formAdd = document.getElementById("add");
+    formAdd.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var title = document.getElementById("title-field-add").value;
+        var author = document.getElementById("author-field-add").value;
+        var language = document.getElementById("language-field-add").value;
+
+        var settings = {
+            "url": "https://localhost:5001/api/books",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "title": title,
+                "author": author,
+                "language": language
+            }),
+        };
+
+        $.ajax(settings).done(function () {
+            $("tbody").empty();
+            showBooks();
+        });
+    });
+
+
+    var formEdit = document.getElementById("edit")
+    formEdit.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var id = document.getElementById("id-field-edit").value;
+        var title = document.getElementById("title-field-edit").value;
+        var author = document.getElementById("author-field-edit").value;
+        var language = document.getElementById("language-field-edit").value;
+        var urlEdit = "https://localhost:5001/api/books/" + String(id);
+
+        var settings = {
+            "url": urlEdit,
+            "method": "PUT",
+            "timeout": 0,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "data": JSON.stringify({
+                "title": title,
+                "author": author,
+                "language": language
+            }),
+        };
+
+        $.ajax(settings).done(function (response) {
+            $("tbody").empty();
+            showBooks();
+        });
+
+    })
+</script>
 </html>

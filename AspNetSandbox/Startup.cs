@@ -31,8 +31,7 @@ namespace AspNetSandbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -46,7 +45,7 @@ namespace AspNetSandbox
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
-            services.AddSingleton<IBookService, BookService>();
+            services.AddSingleton<IBookRepository, BooksInMemoryRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,7 +70,7 @@ namespace AspNetSandbox
             var defaultFilesOptions = new DefaultFilesOptions();
             defaultFilesOptions.DefaultFileNames = new List<string>();
 
-            defaultFilesOptions.DefaultFileNames.Add("index.html");
+            defaultFilesOptions.DefaultFileNames.Add("index-old.html");
             app.UseDefaultFiles(defaultFilesOptions);
 
             app.UseStaticFiles();
@@ -83,11 +82,11 @@ namespace AspNetSandbox
 
             app.UseEndpoints(endpoints =>
             {
+            	endpoints.MapControllers();
 				endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
-                endpoints.MapControllers();
             });
         }
     }

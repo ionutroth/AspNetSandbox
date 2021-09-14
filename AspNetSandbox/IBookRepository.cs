@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AspNetSandbox
 {
-    public interface IBookService
+    public interface IBookRepository
     {
         void DeleteBook(int id);
 

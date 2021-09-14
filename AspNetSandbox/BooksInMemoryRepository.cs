@@ -9,15 +9,15 @@ namespace AspNetSandbox
     using AspNetSandbox.Models;
 
     /// <summary>Implement CRUD operations.</summary>
-    public class BookService : IBookService
+    public class BooksInMemoryRepository : IBookRepository
     {
         private static List<Book> books;
 
         /// <summary>
-        /// Initializes static members of the <see cref="BookService"/> class.
+        /// Initializes static members of the <see cref="BooksInMemoryRepository"/> class.
         /// Initializes the Bookservice class with 2 Book objects.
         /// </summary>
-        static BookService()
+        static BooksInMemoryRepository()
         {
             books = new List<Book>();
             books.Add(new Book

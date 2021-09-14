@@ -37,7 +37,7 @@ namespace AspNetSandbox.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllBooks()
         {
-            return Ok(await _context.Book.ToListAsync());
+            return await _context.Book.ToListAsync();
         }
 
         // GET method with id
@@ -50,7 +50,8 @@ namespace AspNetSandbox.Controllers
         {
             try
             {
-                Book book = await GetBookInstance(id);
+            	var book = await _context.Book
+                .FirstOrDefaultAsync(m => m.Id == id);
                 return Ok(book);
             }
             catch (Exception)
@@ -59,16 +60,10 @@ namespace AspNetSandbox.Controllers
             }
         }
 
-        private async Task<Book> GetBookInstance(int id)
-        {
-            return await _context.Book
-                            .FirstOrDefaultAsync(m => m.Id == id);
-        }
-
         // POST method
 
         /// <summary>Posts a book.</summary>
-        /// <param name="book">The value.</param>
+        /// <param name="value">The value.</param>
         [HttpPost]
         public async Task<IActionResult> PostBook([FromBody]Book book)
         {
@@ -76,29 +71,38 @@ namespace AspNetSandbox.Controllers
             {
                 _context.Add(book);
                 await _context.SaveChangesAsync();
-                return Ok();
+                return RedirectToAction(nameof(Index));
             }
-            else
-            {
-                return BadRequest();
-            }
+            return Ok(book);
         }
 
         // PUT method
 
         /// <summary>Updates an existing boom or creates a new book.</summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="book">The value.</param>
+        /// <param name="value">The value.</param>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBook(int id, [FromBody]Book book)
         {
-            var selectedBook = await GetBookInstance(id);
-            selectedBook.Title = book.Title;
-            selectedBook.Author = book.Author;
-            selectedBook.Language = book.Language;
-            _context.Update(selectedBook);
-            await _context.SaveChangesAsync();
-            return Ok();
+            if (id != book.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(book);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return Ok(book);
         }
 
         // DELETE method
