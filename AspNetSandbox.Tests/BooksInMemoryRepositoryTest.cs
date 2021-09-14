@@ -5,20 +5,21 @@
 namespace AspNetSandbox.Tests
 {
     using AspNetSandbox.Models;
+    using AspNetSandbox.Services;
     using Xunit;
 
     /// <summary>
     /// Test suite for BookController.
     /// </summary>
-    public class BooksInMemoryRepository
+    public class BooksInMemoryRepositoryTest
     {
-        private AspNetSandbox.BooksInMemoryRepository bookService;
+        private IBookRepository bookService;
 
         [Fact]
         public void BookServiceTesting()
         {
             // assume
-            bookService = new AspNetSandbox.BooksInMemoryRepository();
+            bookService = new BooksInMemoryRepository();
 
             // act
             bookService.PostBook(new Book

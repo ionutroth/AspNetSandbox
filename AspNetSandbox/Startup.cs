@@ -9,6 +9,7 @@ namespace AspNetSandbox
     using System.IO;
     using System.Reflection;
     using AspNetSandbox.Data;
+    using AspNetSandbox.Services;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;

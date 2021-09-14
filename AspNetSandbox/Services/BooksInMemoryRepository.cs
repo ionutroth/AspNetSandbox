@@ -2,7 +2,7 @@
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-namespace AspNetSandbox
+namespace AspNetSandbox.Services
 {
     using System.Collections.Generic;
     using System.Linq;
