@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using AspNetSandbox.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetSandbox.Pages.Books
@@ -9,10 +10,12 @@ namespace AspNetSandbox.Pages.Books
     public class DeleteModel : PageModel
     {
         private readonly Data.ApplicationDbContext context;
+        private readonly IHubContext<MessageHub> hubContext;
 
-        public DeleteModel(Data.ApplicationDbContext context)
+        public DeleteModel(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
         {
             this.context = context;
+            this.hubContext = hubContext;
         }
 
         [BindProperty]
@@ -48,9 +51,10 @@ namespace AspNetSandbox.Pages.Books
             {
                 this.context.Book.Remove(Book);
                 await this.context.SaveChangesAsync();
+                await hubContext.Clients.All.SendAsync("BookDeleted", Book);
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Books");
         }
     }
 }

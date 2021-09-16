@@ -29,7 +29,7 @@
     <tbody>
         @foreach (var item in Model.Book)
         {
-            <tr>
+            <tr id="@Html.DisplayFor(modelItem => item.Id)">
                 <td>
                     @Html.DisplayFor(modelItem => item.Title)
                 </td>

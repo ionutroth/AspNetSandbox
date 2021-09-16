@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AspNetSandbox.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
 
 namespace AspNetSandbox.Pages.Books
@@ -12,10 +13,12 @@ namespace AspNetSandbox.Pages.Books
     public class EditModel : PageModel
     {
         private readonly AspNetSandbox.Data.ApplicationDbContext context;
+        private readonly IHubContext<MessageHub> hubContext;
 
-        public EditModel(AspNetSandbox.Data.ApplicationDbContext context)
+        public EditModel(AspNetSandbox.Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
         {
             this.context = context;
+            this.hubContext = hubContext;
         }
 
         [BindProperty]
@@ -47,11 +50,11 @@ namespace AspNetSandbox.Pages.Books
                 return Page();
             }
 
-            this.context.Attach(Book).State = EntityState.Modified;
-
             try
             {
+                this.context.Book.Update(Book);
                 await this.context.SaveChangesAsync();
+                await hubContext.Clients.All.SendAsync("BookUpdated", Book);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -65,7 +68,7 @@ namespace AspNetSandbox.Pages.Books
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Books");
         }
 
         private bool BookExists(int id)
