@@ -1,9 +1,8 @@
-﻿using AspNetSandbox.Data;
-using AspNetSandbox.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using AspNetSandbox.Data;
+using AspNetSandbox.Models;
 
 namespace AspNetSandbox.Services
 {
@@ -18,7 +17,6 @@ namespace AspNetSandbox.Services
 
         public void DeleteBook(int id)
         {
-            throw new NotImplementedException();
             var book = context.Book.Find(id);
             context.Book.Remove(book);
             context.SaveChanges();
@@ -26,31 +24,24 @@ namespace AspNetSandbox.Services
 
         public IEnumerable<Book> GetAllBooks()
         {
-            throw new NotImplementedException();
             return context.Book.ToList();
         }
 
         public Book GetBookById(int id)
         {
-            Book book = GetBookById(id);
+            Book book = context.Book.FirstOrDefault(m => m.Id == id);
             return book;
         }
 
         public void PostBook(Book book)
         {
-            throw new NotImplementedException();
             context.Add(book);
             context.SaveChanges();
         }
 
         public void PutBook(int id, Book book)
         {
-            throw new NotImplementedException();
-            var selectedBook = GetBookById(id);
-            selectedBook.Title = book.Title;
-            selectedBook.Author = book.Author;
-            selectedBook.Language = book.Language;
-            context.Update(selectedBook);
+            context.Update(book);
             context.SaveChanges();
         }
     }

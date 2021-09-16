@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetSandbox.Models;
@@ -12,10 +10,10 @@ namespace AspNetSandbox.Pages.Books
 {
     public class EditModel : PageModel
     {
-        private readonly AspNetSandbox.Data.ApplicationDbContext context;
+        private readonly Data.ApplicationDbContext context;
         private readonly IHubContext<MessageHub> hubContext;
 
-        public EditModel(AspNetSandbox.Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
+        public EditModel(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
         {
             this.context = context;
             this.hubContext = hubContext;
