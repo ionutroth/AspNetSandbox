@@ -8,8 +8,11 @@ namespace AspNetSandbox.Controllers
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using AspNetSandbox.Data;
+    using AspNetSandbox.DTOs;
     using AspNetSandbox.Models;
+    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.SignalR;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
@@ -21,13 +24,17 @@ namespace AspNetSandbox.Controllers
     {
 
         private readonly IBookRepository repository;
+        private readonly IHubContext<MessageHub> hubContext;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BooksController"/> class.
         /// </summary>
-        public BooksController(IBookRepository repository)
+        public BooksController(IBookRepository repository, IHubContext<MessageHub> hubContext, IMapper mapper)
         {
             this.repository = repository;
+            this.hubContext = hubContext;
+            this.mapper = mapper;
         }
 
         // GET method
@@ -59,21 +66,19 @@ namespace AspNetSandbox.Controllers
             }
         }
 
-        private async Task<Book> GetBookInstance(int id)
-        {
-            return repository.FirstOrDefault(m => m.Id == id);
-        }
-
         // POST method
 
         /// <summary>Posts a book.</summary>
-        /// <param name="book">The value.</param>
+        /// <param name="bookDto">The value.</param>
         [HttpPost]
-        public async Task<IActionResult> PostBook([FromBody]Book book)
+        public async Task<IActionResult> PostBook([FromBody]CreateBookDto bookDto)
         {
             if (ModelState.IsValid)
             {
+                Book book = mapper.Map<Book>(bookDto);
                 repository.PostBook(book);
+                hubContext.Clients.All.SendAsync("BookCreated", bookDto);
+
                 return Ok();
             }
             else

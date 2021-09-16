@@ -80,7 +80,6 @@
         };
 
         $.ajax(settings).done(function (response) {
-            console.log(response);
             var tableBody = document.getElementById("book-table").getElementsByTagName("tbody")[0];
             response.forEach(book => {
                 var row = tableBody.insertRow();

@@ -10,8 +10,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.github\workflows\dotnet.yml = ..\.github\workflows\dotnet.yml
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSandbox.Tests", "..\AspNetSandbox.Tests\AspNetSandbox.Tests.csproj", "{50240D09-69B7-444A-BA37-DC403B076C68}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockerSandbox", "DockerSandbox\DockerSandbox.csproj", "{C8D10D1E-18D3-4E50-A959-CA927D76BCC9}"
 EndProject
 Global
@@ -24,10 +22,6 @@ Global
 		{AE41AD63-FEF0-4B83-90E7-51923861B0E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AE41AD63-FEF0-4B83-90E7-51923861B0E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AE41AD63-FEF0-4B83-90E7-51923861B0E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{50240D09-69B7-444A-BA37-DC403B076C68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{50240D09-69B7-444A-BA37-DC403B076C68}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{50240D09-69B7-444A-BA37-DC403B076C68}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{50240D09-69B7-444A-BA37-DC403B076C68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C8D10D1E-18D3-4E50-A959-CA927D76BCC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C8D10D1E-18D3-4E50-A959-CA927D76BCC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C8D10D1E-18D3-4E50-A959-CA927D76BCC9}.Release|Any CPU.ActiveCfg = Release|Any CPU

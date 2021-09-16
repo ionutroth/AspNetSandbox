@@ -1,4 +1,5 @@
-﻿using AspNetSandbox.Models;
+﻿using AspNetSandbox.DTOs;
+using AspNetSandbox.Models;
 using System;
 using System.Collections.Generic;
 
@@ -12,9 +13,8 @@ namespace AspNetSandbox
 
         Book GetBookById(int id);
 
-        void PostBook(Book value);
+        void PostBook(Book book);
 
         void PutBook(int id, Book value);
-        Book FirstOrDefault(Func<object, bool> p);
     }
 }
