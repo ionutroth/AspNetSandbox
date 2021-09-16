@@ -1,9 +1,9 @@
-﻿// <copyright file="Startup.cs" company="PlaceholderCompany">
+﻿// <copyright file="MessageHub.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
-using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.SignalR;
 
 namespace AspNetSandbox
 {

@@ -5,15 +5,12 @@
 namespace AspNetSandbox.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
-    using AspNetSandbox.Data;
     using AspNetSandbox.DTOs;
     using AspNetSandbox.Models;
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SignalR;
-    using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     ///   This controller allows us to call CRUD operations from BookService.
@@ -44,6 +41,7 @@ namespace AspNetSandbox.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllBooks()
         {
+            await hubContext.Clients.All.SendAsync("BooksShown");
             return Ok(repository.GetAllBooks());
         }
 
@@ -58,7 +56,8 @@ namespace AspNetSandbox.Controllers
             try
             {
                 Book book = repository.GetBookById(id);
-                return Ok(book);
+                ReadBookDto readBookDto = mapper.Map<ReadBookDto>(book);
+                return Ok(readBookDto);
             }
             catch (Exception)
             {
@@ -78,7 +77,6 @@ namespace AspNetSandbox.Controllers
                 Book book = mapper.Map<Book>(bookDto);
                 repository.PostBook(book);
                 await hubContext.Clients.All.SendAsync("BookCreated", book);
-
                 return Ok();
             }
             else
@@ -93,9 +91,11 @@ namespace AspNetSandbox.Controllers
         /// <param name="id">The identifier.</param>
         /// <param name="book">The value.</param>
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBook(int id, [FromBody]Book book)
+        public async Task<IActionResult> PutBook(int id, [FromBody]CreateBookDto bookDto)
         {
+            Book book = mapper.Map<Book>(bookDto);
             repository.PutBook(id, book);
+            await hubContext.Clients.All.SendAsync("BookUpdated", book);
             return Ok();
         }
 
@@ -106,7 +106,10 @@ namespace AspNetSandbox.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {
-            repository.DeleteBook(id);
+            Book book = repository.GetBookById(id);
+            ReadBookDto bookDto = mapper.Map<ReadBookDto>(book);
+            repository.DeleteBook(bookDto.Id);
+            await hubContext.Clients.All.SendAsync("BookDeleted", bookDto);
             return Ok();
         }
     }

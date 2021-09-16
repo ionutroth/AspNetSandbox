@@ -1,7 +1,5 @@
-﻿using AspNetSandbox.DTOs;
+﻿using System.Collections.Generic;
 using AspNetSandbox.Models;
-using System;
-using System.Collections.Generic;
 
 namespace AspNetSandbox
 {

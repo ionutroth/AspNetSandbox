@@ -49,7 +49,7 @@ namespace AspNetSandbox
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
             services.AddSignalR();
-            services.AddScoped<IBookRepository, BooksInMemoryRepository>();
+            services.AddScoped<IBookRepository, DbBookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,13 +81,13 @@ namespace AspNetSandbox
 
             app.UseRouting();
 
-			app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-            	endpoints.MapControllers();
-				endpoints.MapControllerRoute(
+                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
