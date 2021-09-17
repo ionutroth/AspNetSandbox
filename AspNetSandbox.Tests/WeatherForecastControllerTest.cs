@@ -55,10 +55,8 @@ namespace AspNetSandbox.Tests
             var assemblyName = assembly.GetName().Name;
             var resourceName = $"{assemblyName}.OpenWeatherApi.json";
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
-            using (var tr = new StreamReader(resourceStream))
-            {
-                return tr.ReadToEnd();
-            }
+            using var tr = new StreamReader(resourceStream);
+            return tr.ReadToEnd();
         }
     }
 }

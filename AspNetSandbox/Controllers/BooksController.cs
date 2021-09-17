@@ -20,13 +20,15 @@ namespace AspNetSandbox.Controllers
     [ApiController]
     public class BooksController : ControllerBase
     {
-
         private readonly IBookRepository repository;
         private readonly IHubContext<MessageHub> hubContext;
         private readonly IMapper mapper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BooksController"/> class.
+        /// <param name="repository">Repository</param>
+        /// <param name="hubContext">HubContext</param>
+        /// <param name="mapper">IMapper</param>
         /// </summary>
         public BooksController(IBookRepository repository, IHubContext<MessageHub> hubContext, IMapper mapper)
         {
@@ -91,7 +93,7 @@ namespace AspNetSandbox.Controllers
 
         /// <summary>Updates an existing boom or creates a new book.</summary>
         /// <param name="id">The identifier.</param>
-        /// <param name="book">The value.</param>
+        /// <param name="bookDto">The value.</param>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBook(int id, [FromBody]CreateBookDto bookDto)
         {
