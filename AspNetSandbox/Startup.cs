@@ -32,7 +32,9 @@ namespace AspNetSandbox
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(GetConnectionString()));
+
+                    //Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -93,6 +95,30 @@ namespace AspNetSandbox
                 endpoints.MapRazorPages();
                 endpoints.MapHub<MessageHub>("/messagehub");
             });
+        }
+
+        private string GetConnectionString()
+        {
+            var connectionstring = Environment.GetEnvironmentVariable("DATABASE_URL");
+            if (connectionstring != null)
+            {
+                return ConvertConnectionString(connectionstring);
+            }
+
+            return Configuration.GetConnectionString("DefaultConnection");
+        }
+
+        public static string ConvertConnectionString(string connectionstring)
+        {
+            Uri uri = new Uri(connectionstring);
+            
+            var databasename = $"AbsolutePath:{uri.AbsolutePath}";
+            var hostname = $"Host: {uri.Host}";
+            var portname = $"Port: {uri.Port}";
+            var username = $"UserInfo: {uri.UserInfo}";
+            var urlString = "Database = " + databasename.Split("/")[1] + "; Host =" + hostname.Split(":")[1].Replace("-", " - ") + "; Port =" + portname.Split(":")[1] + "; User Id =" + username.Split(":")[1] + "; Password = " + username.Split(":")[2] + "; SSL Mode = Require; Trust Server Certificate = true";
+
+            return urlString;
         }
     }
 }
