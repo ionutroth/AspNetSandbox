@@ -5,6 +5,7 @@
 namespace AspNetSandbox.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using AspNetSandbox.DTOs;
     using AspNetSandbox.Models;
@@ -41,8 +42,9 @@ namespace AspNetSandbox.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllBooks()
         {
-            await hubContext.Clients.All.SendAsync("BooksShown");
-            return Ok(repository.GetAllBooks());
+            var bookList = repository.GetAllBooks();
+            var readBookList = mapper.Map<IEnumerable<ReadBookDto>>(bookList);
+            return Ok(readBookList);
         }
 
         // GET method with id
