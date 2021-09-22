@@ -18,7 +18,7 @@ docker stop web_container_borys
 
 to remove container
 ```
-docker rm web_container_borys
+docker rm web_container_ionut
 ```
 
 ## Deploy to heroku
