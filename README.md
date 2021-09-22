@@ -19,7 +19,7 @@ docker build -t web_ionut .
 to run
 
 ```
-docker run -d -p 8081:80 --name web_container_borys web_ionut
+docker run -d -p 8081:80 --name web_container_ionut web_ionut
 ```
 
 to stop container
@@ -47,10 +47,10 @@ heroku container:login
 
 Push container
 ```
-heroku container:push -a webapp-sandbox-ionut web
+heroku container:push -a asp-net-sandbox-project web
 ```
 
 Release the container
 ```
-heroku container:release -a webapp-sandbox-ionut web
+heroku container:release -a asp-net-sandbox-project web
 ```

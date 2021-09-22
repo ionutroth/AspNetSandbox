@@ -53,6 +53,7 @@ namespace AspNetSandbox
             });
             services.AddSignalR();
             services.AddScoped<IBookRepository, DbBookRepository>();
+            services.AddOptions();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
