@@ -9,6 +9,7 @@ namespace AspNetSandbox.Controllers
     using System.Threading.Tasks;
     using AspNetSandbox.DTOs;
     using AspNetSandbox.Models;
+    using AspNetSandbox.Services;
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.SignalR;
