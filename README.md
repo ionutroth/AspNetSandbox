@@ -1,6 +1,17 @@
-﻿## How to run in Docker from the commandline
+﻿# Ionut sandbox project for back-end course
 
-Build in container
+name | value
+--- | ---
+language | C#
+database | postgres
+deployed | https://asp-net-sandbox-project.herokuapp.com
+
+## How to run in Docker from the commandline
+
+Navigate to [AspNetSandbox](AspNetSandbox) directory
+
+
+### Build in container
 ```
 docker build -t web_ionut .
 ```
@@ -13,7 +24,7 @@ docker run -d -p 8081:80 --name web_container_borys web_ionut
 
 to stop container
 ```
-docker stop web_container_borys
+docker stop web_container_ionut
 ```
 
 to remove container
@@ -36,10 +47,10 @@ heroku container:login
 
 Push container
 ```
-heroku container:push -a webapp-sandbox-borys web
+heroku container:push -a webapp-sandbox-ionut web
 ```
 
 Release the container
 ```
-heroku container:release -a webapp-sandbox-borys web
+heroku container:release -a webapp-sandbox-ionut web
 ```

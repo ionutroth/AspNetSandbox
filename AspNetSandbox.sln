@@ -9,10 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSandbox.Tests", "AspN
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{097A00D4-CCAD-4D19-AF8D-C935A292CCD9}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBSandbox", "DBSandbox\DBSandbox.csproj", "{5D17A9FC-3855-4E9B-AB94-A1A9313A2976}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBSandbox", "DBSandbox\DBSandbox.csproj", "{5D17A9FC-3855-4E9B-AB94-A1A9313A2976}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
