@@ -1,12 +1,16 @@
-using System.Threading.Tasks;
-using AspNetSandbox.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
+// <copyright file="Delete.cshtml.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AspNetSandbox.Pages.Books
 {
+    using System.Threading.Tasks;
+    using AspNetSandbox.Models;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.AspNetCore.SignalR;
+    using Microsoft.EntityFrameworkCore;
+
     public class DeleteModel : PageModel
     {
         private readonly Data.ApplicationDbContext context;

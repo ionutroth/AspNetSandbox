@@ -1,4 +1,4 @@
-// <copyright file="Books.cshtml.cs" company="PlaceholderCompany">
+﻿// <copyright file="BooksModel.cshtml.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -10,11 +10,11 @@ namespace AspNetSandbox.Pages.Books
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.EntityFrameworkCore;
 
-    public class BooksModel : PageModel
+    public class Books : PageModel
     {
         private readonly AspNetSandbox.Data.ApplicationDbContext context;
 
-        public BooksModel(AspNetSandbox.Data.ApplicationDbContext context)
+        public Books(AspNetSandbox.Data.ApplicationDbContext context)
         {
             this.context = context;
         }

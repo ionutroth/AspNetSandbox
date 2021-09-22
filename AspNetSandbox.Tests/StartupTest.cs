@@ -1,7 +1,11 @@
-﻿using Xunit;
+﻿// <copyright file="StartupTest.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AspNetSandbox.Tests
 {
+    using Xunit;
+
     public class StartupTest
     {
         [Fact]

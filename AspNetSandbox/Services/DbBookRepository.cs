@@ -1,11 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AspNetSandbox.Data;
-using AspNetSandbox.Models;
+﻿// <copyright file="DbBookRepository.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace AspNetSandbox.Services
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using AspNetSandbox.Data;
+    using AspNetSandbox.Models;
+
     public class DbBookRepository : IBookRepository
     {
         private readonly ApplicationDbContext context;
@@ -41,6 +45,7 @@ namespace AspNetSandbox.Services
 
         public void PutBook(int id, Book book)
         {
+            book.Id = id;
             context.Update(book);
             context.SaveChanges();
         }

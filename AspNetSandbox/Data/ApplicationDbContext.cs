@@ -1,4 +1,8 @@
-﻿namespace AspNetSandbox.Data
+﻿// <copyright file="ApplicationDbContext.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace AspNetSandbox.Data
 {
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;

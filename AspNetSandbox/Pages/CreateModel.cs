@@ -1,4 +1,4 @@
-// <copyright file="Create.cshtml.cs" company="PlaceholderCompany">
+// <copyright file="CreateModel.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -10,12 +10,12 @@ namespace AspNetSandbox.Pages.Books
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.SignalR;
 
-    public class CreateModel : PageModel
+    public class Create : PageModel
     {
         private readonly Data.ApplicationDbContext context;
         private readonly IHubContext<MessageHub> hubContext;
 
-        public CreateModel(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
+        public Create(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
         {
             this.context = context;
             this.hubContext = hubContext;

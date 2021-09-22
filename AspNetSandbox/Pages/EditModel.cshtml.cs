@@ -1,4 +1,4 @@
-// <copyright file="Edit.cshtml.cs" company="PlaceholderCompany">
+﻿// <copyright file="EditModel.cshtml.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
@@ -12,12 +12,12 @@ namespace AspNetSandbox.Pages.Books
     using Microsoft.AspNetCore.SignalR;
     using Microsoft.EntityFrameworkCore;
 
-    public class EditModel : PageModel
+    public class Edit : PageModel
     {
         private readonly Data.ApplicationDbContext context;
         private readonly IHubContext<MessageHub> hubContext;
 
-        public EditModel(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
+        public Edit(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
         {
             this.context = context;
             this.hubContext = hubContext;

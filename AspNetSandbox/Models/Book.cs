@@ -4,6 +4,9 @@
 
 namespace AspNetSandbox.Models
 {
+    using System.Diagnostics;
+
+    [DebuggerDisplay("Title = {Title} Id = {Id}")]
     public class Book
     {
         public int Id { get; set; }

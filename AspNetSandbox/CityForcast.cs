@@ -1,4 +1,8 @@
-﻿namespace ApiSandbox
+﻿// <copyright file="CityForcast.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace ApiSandbox
 {
     public class CityForcast
     {

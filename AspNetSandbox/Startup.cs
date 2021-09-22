@@ -7,6 +7,7 @@ namespace AspNetSandbox
     using System;
     using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Reflection;
     using AspNetSandbox.Data;
     using AspNetSandbox.Services;
@@ -34,7 +35,7 @@ namespace AspNetSandbox
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(GetConnectionString()));
 
-                    //Configuration.GetConnectionString("DefaultConnection")));
+                    // Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -81,6 +82,8 @@ namespace AspNetSandbox
 
             app.UseStaticFiles();
 
+            app.SeedData();
+
             app.UseRouting();
 
             app.UseAuthentication();
@@ -97,6 +100,18 @@ namespace AspNetSandbox
             });
         }
 
+        public static string ConvertConnectionString(string connectionstring)
+        {
+            Uri uri = new Uri(connectionstring);
+            var databasename = $"AbsolutePath:{uri.AbsolutePath}";
+            var hostname = $"Host: {uri.Host}";
+            var portname = $"Port: {uri.Port}";
+            var username = $"UserInfo: {uri.UserInfo}";
+            var urlString = "Database = " + databasename.Split("/")[1] + "; Host =" + hostname.Split(":")[1].Replace("-", " - ") + "; Port =" + portname.Split(":")[1] + "; User Id =" + username.Split(":")[1] + "; Password = " + username.Split(":")[2] + "; SSL Mode = Require; Trust Server Certificate = true";
+
+            return urlString;
+        }
+
         private string GetConnectionString()
         {
             var connectionstring = Environment.GetEnvironmentVariable("DATABASE_URL");
@@ -105,20 +120,7 @@ namespace AspNetSandbox
                 return ConvertConnectionString(connectionstring);
             }
 
-            return Configuration.GetConnectionString("DefaultConnection");
-        }
-
-        public static string ConvertConnectionString(string connectionstring)
-        {
-            Uri uri = new Uri(connectionstring);
-            
-            var databasename = $"AbsolutePath:{uri.AbsolutePath}";
-            var hostname = $"Host: {uri.Host}";
-            var portname = $"Port: {uri.Port}";
-            var username = $"UserInfo: {uri.UserInfo}";
-            var urlString = "Database = " + databasename.Split("/")[1] + "; Host =" + hostname.Split(":")[1].Replace("-", " - ") + "; Port =" + portname.Split(":")[1] + "; User Id =" + username.Split(":")[1] + "; Password = " + username.Split(":")[2] + "; SSL Mode = Require; Trust Server Certificate = true";
-
-            return urlString;
+            return Configuration.GetConnectionString("NewDefaultConnection");
         }
     }
 }

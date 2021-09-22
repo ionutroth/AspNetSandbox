@@ -28,7 +28,7 @@ namespace AspNetSandbox.Controllers
         /// Initializes a new instance of the <see cref="BooksController"/> class.
         /// <param name="repository">Repository</param>
         /// <param name="hubContext">HubContext</param>
-        /// <param name="mapper">IMapper</param>
+        /// <param name="mapper"></param>
         /// </summary>
         public BooksController(IBookRepository repository, IHubContext<MessageHub> hubContext, IMapper mapper)
         {
@@ -46,6 +46,7 @@ namespace AspNetSandbox.Controllers
         {
             var bookList = repository.GetAllBooks();
             var readBookList = mapper.Map<IEnumerable<ReadBookDto>>(bookList);
+            await hubContext.Clients.All.SendAsync("BooksLoaded");
             return Ok(readBookList);
         }
 
@@ -73,6 +74,7 @@ namespace AspNetSandbox.Controllers
 
         /// <summary>Posts a book.</summary>
         /// <param name="bookDto">The value.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         [HttpPost]
         public async Task<IActionResult> PostBook([FromBody]CreateBookDto bookDto)
         {
@@ -94,6 +96,7 @@ namespace AspNetSandbox.Controllers
         /// <summary>Updates an existing boom or creates a new book.</summary>
         /// <param name="id">The identifier.</param>
         /// <param name="bookDto">The value.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBook(int id, [FromBody]CreateBookDto bookDto)
         {
@@ -107,6 +110,7 @@ namespace AspNetSandbox.Controllers
 
         /// <summary>Deletes the book.</summary>
         /// <param name="id">The identifier.</param>
+        /// <returns>A <see cref="Task"/> representing the asynchronous operation.</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBook(int id)
         {

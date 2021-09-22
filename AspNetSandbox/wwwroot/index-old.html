@@ -10,9 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-    <div style="display:flex;align-items:center;flex-direction:column">
-        <div>
-            <table id="book-table" class="table">
+    <div style="display:flex;flex-direction:column">
+        <div style="width:100vw">
+            <table id="book-table" class="table" style="width:100vw">
                 <thead class="thead-dark">
                     <tr>
                         <th>
@@ -36,66 +36,70 @@
                 </tbody>
             </table>
         </div>
-        <div style="display:flex;flex-direction:row; justify-content:space-around">
-            <form id="add">
-                <p><b>Add new book</b></p>
-                <div class="form-group">
-                    <label for="title-field-add">
-                        Title
-                    </label>
-                    <input type="text" id="title-field-add" class="form-control" placeholder="Book title" required />
-                </div>
+        <div style="display:flex;flex-direction:row;justify-content:space-around">
+            <div style="width:20vw">
+                <form id="add">
+                    <p><b>Add new book</b></p>
+                    <div class="form-group">
+                        <label for="title-field-add">
+                            Title
+                        </label>
+                        <input type="text" id="title-field-add" class="form-control" placeholder="Book title" required />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="author-field-add">
+                            Author
+                        </label>
+                        <input type="text" id="author-field-add" class="form-control" placeholder="Book author" required />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="language-field-add">
+                            Language
+                        </label>
+                        <input type="text" id="language-field-add" class="form-control" placeholder="Book language" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add book</button>
+                </form>
                 <br />
-                <div class="form-group">
-                    <label for="author-field-add">
-                        Author
-                    </label>
-                    <input type="text" id="author-field-add" class="form-control" placeholder="Book author" required />
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="language-field-add">
-                        Language
-                    </label>
-                    <input type="text" id="language-field-add" class="form-control" placeholder="Book language" required />
-                </div>
-                <button type="submit" class="btn btn-primary">Add book</button>
-            </form>
-            <br />
-
-            <form id="edit">
-                <p><b>Edit existing book</b></p>
-                <div class="form-group">
-                    <label for="id-field-edit">
-                        Id
-                    </label>
-                    <input type="number" id="id-field-edit" class="form-control" placeholder="Book id" required />
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="title-field-edit">
-                        Title
-                    </label>
-                    <input type="text" id="title-field-edit" class="form-control" placeholder="Book title" required />
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="author-field-edit">
-                        Author
-                    </label>
-                    <input type="text" id="author-field-edit" class="form-control" placeholder="Book author" required />
-                </div>
-                <br />
-                <div class="form-group">
-                    <label for="language-field-edit">
-                        Language
-                    </label>
-                    <input type="text" id="language-field-edit" class="form-control" placeholder="Book language" required />
-                </div>
-                <button class="btn btn-outline-primary" type="submit">Edit book</button>
-            </form>
-        </div>
-        
+            </div>
+            
+            <div style="width:20vw">
+                <form id="edit">
+                    <p><b>Edit existing book</b></p>
+                    <div class="form-group">
+                        <label for="id-field-edit">
+                            Id
+                        </label>
+                        <input type="number" id="id-field-edit" class="form-control" placeholder="Book id" required />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="title-field-edit">
+                            Title
+                        </label>
+                        <input type="text" id="title-field-edit" class="form-control" placeholder="Book title" required />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="author-field-edit">
+                            Author
+                        </label>
+                        <input type="text" id="author-field-edit" class="form-control" placeholder="Book author" required />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <label for="language-field-edit">
+                            Language
+                        </label>
+                        <input type="text" id="language-field-edit" class="form-control" placeholder="Book language" required />
+                    </div>
+                    <button class="btn btn-outline-primary" type="submit">Edit book</button>
+                </form>
+            </div>
+            
+        </div> 
     </div>
 
     <script src="./lib/microsoft-signalr/signalr.js"></script>

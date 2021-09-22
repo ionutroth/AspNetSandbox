@@ -1,10 +1,9 @@
-// <copyright file="Edit.cshtml.cs" company="PlaceholderCompany">
+﻿// <copyright file="DeleteModel.cshtml.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 namespace AspNetSandbox.Pages.Books
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using AspNetSandbox.Models;
     using Microsoft.AspNetCore.Mvc;
@@ -12,12 +11,12 @@ namespace AspNetSandbox.Pages.Books
     using Microsoft.AspNetCore.SignalR;
     using Microsoft.EntityFrameworkCore;
 
-    public class EditModel : PageModel
+    public class Delete : PageModel
     {
         private readonly Data.ApplicationDbContext context;
         private readonly IHubContext<MessageHub> hubContext;
 
-        public EditModel(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
+        public Delete(Data.ApplicationDbContext context, IHubContext<MessageHub> hubContext)
         {
             this.context = context;
             this.hubContext = hubContext;
@@ -43,39 +42,23 @@ namespace AspNetSandbox.Pages.Books
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+        public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (!ModelState.IsValid)
+            if (id == null)
             {
-                return Page();
+                return NotFound();
             }
 
-            try
+            Book = await this.context.Book.FindAsync(id);
+
+            if (Book != null)
             {
-                this.context.Book.Update(Book);
+                this.context.Book.Remove(Book);
                 await this.context.SaveChangesAsync();
-                await hubContext.Clients.All.SendAsync("BookUpdated", Book);
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!BookExists(Book.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                await hubContext.Clients.All.SendAsync("BookDeleted", Book);
             }
 
             return RedirectToPage("./Books");
-        }
-
-        private bool BookExists(int id)
-        {
-            return this.context.Book.Any(e => e.Id == id);
         }
     }
 }
