@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using UserManagement.Data;
-using UserManagement.Models;
 
 namespace UserManagement.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class UsersController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
