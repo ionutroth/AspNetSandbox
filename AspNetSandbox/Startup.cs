@@ -113,7 +113,7 @@ namespace AspNetSandbox
             return urlString;
         }
 
-        private string GetConnectionString()
+        public string GetConnectionString()
         {
             var connectionstring = Environment.GetEnvironmentVariable("DATABASE_URL");
             if (connectionstring != null)
