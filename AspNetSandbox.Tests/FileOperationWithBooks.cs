@@ -48,7 +48,7 @@ namespace AspNetSandbox.Tests
         [Fact]
         public void ReadFilesTest()
         {
-            using (var fs = File.OpenRead("newSettings.json"))
+            using (var fs = File.OpenRead("../../../newSettings.json"))
             {
                 byte[] b = new byte[1024];
                 UTF8Encoding temp = new UTF8Encoding(true);
