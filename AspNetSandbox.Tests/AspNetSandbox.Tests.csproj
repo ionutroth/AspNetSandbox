@@ -36,4 +36,8 @@
     <ProjectReference Include="..\AspNetSandbox\AspNetSandbox.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="JsonFiles\" />
+  </ItemGroup>
+
 </Project>

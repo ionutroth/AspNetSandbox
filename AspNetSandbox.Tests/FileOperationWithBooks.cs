@@ -14,7 +14,7 @@ namespace AspNetSandbox.Tests
         [Fact]
         public void EnumerateFilesTest()
         {
-            System.IO.DirectoryInfo directoryInfo = new System.IO.DirectoryInfo(".");
+            DirectoryInfo directoryInfo = new DirectoryInfo("../../../JsonFiles");
             var files = directoryInfo.EnumerateFiles();
             foreach (var file in files)
             {

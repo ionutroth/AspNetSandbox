@@ -14,6 +14,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DockerSandbox", "DockerSand
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserManagement", "..\UserManagement\UserManagement.csproj", "{9DA625D4-6357-42B0-BBBC-33D460798740}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetSandbox.Tests", "..\AspNetSandbox.Tests\AspNetSandbox.Tests.csproj", "{D0B16C31-CD08-4905-BDDB-B73535EBC5F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{9DA625D4-6357-42B0-BBBC-33D460798740}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DA625D4-6357-42B0-BBBC-33D460798740}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DA625D4-6357-42B0-BBBC-33D460798740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B16C31-CD08-4905-BDDB-B73535EBC5F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B16C31-CD08-4905-BDDB-B73535EBC5F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B16C31-CD08-4905-BDDB-B73535EBC5F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B16C31-CD08-4905-BDDB-B73535EBC5F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
